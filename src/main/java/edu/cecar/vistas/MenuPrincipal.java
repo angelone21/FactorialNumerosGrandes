@@ -53,6 +53,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         JBResultado = new javax.swing.JButton();
         jLnumeroCore = new javax.swing.JLabel();
         txt_cores = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menú Principal");
@@ -69,7 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextNumeroCalcular);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 11, 437, 179);
+        jScrollPane1.setBounds(10, 50, 437, 140);
 
         jBCalcular.setText("Calcular");
         jBCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +80,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jBCalcular);
-        jBCalcular.setBounds(480, 80, 150, 40);
+        jBCalcular.setBounds(480, 170, 150, 40);
 
         JTextResultado.setEditable(false);
         JTextResultado.setColumns(20);
@@ -86,7 +88,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane2.setViewportView(JTextResultado);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(10, 200, 440, 190);
+        jScrollPane2.setBounds(10, 240, 440, 150);
 
         JBResultado.setText("Descargar Resultado");
         JBResultado.addActionListener(new java.awt.event.ActionListener() {
@@ -95,11 +97,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(JBResultado);
-        JBResultado.setBounds(480, 140, 150, 40);
+        JBResultado.setBounds(480, 230, 150, 40);
 
         jLnumeroCore.setText("Número Core: ");
         getContentPane().add(jLnumeroCore);
-        jLnumeroCore.setBounds(470, 10, 90, 30);
+        jLnumeroCore.setBounds(480, 130, 90, 30);
 
         txt_cores.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -107,7 +109,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txt_cores);
-        txt_cores.setBounds(570, 10, 30, 30);
+        txt_cores.setBounds(580, 130, 30, 30);
+
+        jLabel1.setText("Resultado:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(190, 210, 130, 20);
+
+        jLabel2.setText("Numero a calcular: ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(160, 20, 130, 20);
 
         setSize(new java.awt.Dimension(675, 444));
         setLocationRelativeTo(null);
@@ -296,6 +306,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton JBResultado;
     private javax.swing.JTextArea JTextResultado;
     private javax.swing.JButton jBCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLnumeroCore;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
