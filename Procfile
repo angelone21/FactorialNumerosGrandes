@@ -1,1 +1,1 @@
-web: java -jar target/ProyectoDobleFactorial-1.0-SNAPSHOT.jar
+web:    java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
