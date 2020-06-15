@@ -100,7 +100,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLnumeroCore">
       <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xfa;mero Core: "/>
+        <Property name="text" type="java.lang.String" value="N&#xfa;mero Cores: "/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

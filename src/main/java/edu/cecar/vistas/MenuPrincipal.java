@@ -99,7 +99,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(JBResultado);
         JBResultado.setBounds(480, 230, 150, 40);
 
-        jLnumeroCore.setText("Número Core: ");
+        jLnumeroCore.setText("Número Cores: ");
         getContentPane().add(jLnumeroCore);
         jLnumeroCore.setBounds(480, 130, 90, 30);
 
@@ -244,16 +244,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         try {
             int retrival = jf.showSaveDialog(null);
             if (retrival == JFileChooser.APPROVE_OPTION) {
-                try {
-                    FileWriter fw = new FileWriter(jf.getSelectedFile() + ".txt");
-                    fw.write(JTextResultado.getText());
-                    fw.close();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+
+                FileWriter fw = new FileWriter(jf.getSelectedFile() + ".txt");
+                fw.write(JTextResultado.getText());
+                fw.write("\n");
+                fw.write("Cores utilizados: " + procesadores);
+                fw.close();
+
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar el Archivo.");
+            JOptionPane.showMessageDialog(null, "Error al guardar el Archivo.");
         }
 
     }//GEN-LAST:event_JBResultadoActionPerformed
