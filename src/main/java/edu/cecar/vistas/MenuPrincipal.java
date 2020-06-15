@@ -5,12 +5,13 @@
  */
 package edu.cecar.vistas;
 
-import edu.cecar.controladores.ControladorNumeros;
 import edu.cecar.modelo.FactorialHilo;
+import edu.cecar.modelo.FiltroArchivoPlano;
+import java.io.FileWriter;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         initComponents();
         procesadores = Runtime.getRuntime().availableProcessors();
         txt_cores.setText(procesadores + "");
+        JBResultado.setVisible(false);
     }
 
     public boolean modulo(BigInteger val) {
@@ -87,6 +89,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane2.setBounds(10, 200, 440, 190);
 
         JBResultado.setText("Descargar Resultado");
+        JBResultado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBResultadoActionPerformed(evt);
+            }
+        });
         getContentPane().add(JBResultado);
         JBResultado.setBounds(480, 140, 150, 40);
 
@@ -94,7 +101,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLnumeroCore);
         jLnumeroCore.setBounds(470, 10, 90, 30);
 
-        txt_cores.setEditable(false);
+        txt_cores.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_coresKeyTyped(evt);
+            }
+        });
         getContentPane().add(txt_cores);
         txt_cores.setBounds(570, 10, 30, 30);
 
@@ -110,7 +121,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         BigInteger indice;
         BigInteger finals;
         ArrayList<FactorialHilo> hilos = new ArrayList<>();
-        procesadores = 4;
+        procesadores = Integer.parseInt(txt_cores.getText());
         // System.out.println("RESAULTSADO: "+ cf.factorial(new BigInteger("19")));
         try {
             if (numeroCalcular.compareTo(BigInteger.ZERO) == 0 || numeroCalcular.compareTo(BigInteger.ONE) == 0) {
@@ -123,6 +134,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         cf.start();
                         cf.join();
                         JTextResultado.setText(cf.obtenerValor() + "");
+                        JBResultado.setVisible(true);
                     } else {
                         inicio = new BigInteger("2");
                         indice = ((numeroCalcular.divide(new BigInteger("2"))).divide(BigInteger.valueOf(procesadores)));
@@ -141,7 +153,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 finals = numeroCalcular;
                             } else {
                                 inicio = finals.add(new BigInteger("2"));
-                                finals = finals.multiply(new BigInteger("2"));
+                                finals = finals.add(indice.multiply(new BigInteger("2")));
                             }
 
                         }
@@ -153,6 +165,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         }
                         System.out.println("R " + resultado);
                         JTextResultado.setText(resultado + "");
+                        JBResultado.setVisible(true);
                     }
 
                 } else {
@@ -161,6 +174,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         cf.start();
                         cf.join();
                         JTextResultado.setText(cf.obtenerValor() + "");
+                        JBResultado.setVisible(true);
                     } else {
                         //inpar
                         inicio = new BigInteger("3");
@@ -193,6 +207,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         }
                         System.out.println("R " + resultado);
                         JTextResultado.setText(resultado + "");
+                        JBResultado.setVisible(true);
                     }
 
                 }
@@ -210,6 +225,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextNumeroCalcularKeyTyped
+
+    private void JBResultadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBResultadoActionPerformed
+        // TODO add your handling code here:
+        JFileChooser jf = new JFileChooser();
+        jf.addChoosableFileFilter(new FiltroArchivoPlano());
+        jf.setAcceptAllFileFilterUsed(false);
+        try {
+            int retrival = jf.showSaveDialog(null);
+            if (retrival == JFileChooser.APPROVE_OPTION) {
+                try {
+                    FileWriter fw = new FileWriter(jf.getSelectedFile() + ".txt");
+                    fw.write(JTextResultado.getText());
+                    fw.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar el Archivo.");
+        }
+
+    }//GEN-LAST:event_JBResultadoActionPerformed
+
+    private void txt_coresKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_coresKeyTyped
+        // TODO add your handling code here:
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txt_coresKeyTyped
 
     /**
      * @param args the command line arguments
