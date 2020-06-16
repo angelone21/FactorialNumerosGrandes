@@ -37,6 +37,7 @@ public class FactorialHilo extends Thread {
         
         for (BigInteger i = indiceAnterior; i.compareTo(indice) >= 0; i = i.subtract(BigInteger.valueOf(2))) {
             resultadoAnterior = cm.multiplicar(resultadoAnterior, i);
+            System.out.println(resultadoAnterior);
         }
 
     }
